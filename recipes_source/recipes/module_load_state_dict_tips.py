@@ -2,6 +2,7 @@
 
 Tips for Loading an ``nn.Module`` from a Checkpoint
 ===================================================
+**Author:** `Mikayla Gawarecki <https://github.com/mikaylagawarecki>`_
 
 If you're loading a checkpoint and want to reduce compute and memory as much as possible,
 this tutorial shares some recommended practices. In particular, we will discuss
@@ -38,7 +39,7 @@ torch.save(m.state_dict(), 'checkpoint.pth')
 # to ``torch.load``, the ``torch.device()`` context manager and the ``assign``
 # keyword argument to ``nn.Module.load_state_dict()``.
 
-state_dict = torch.load('checkpoint.pth', mmap=True)
+state_dict = torch.load('checkpoint.pth', mmap=True, weights_only=True)
 with torch.device('meta'):
   meta_m = SomeModule(1000)
 meta_m.load_state_dict(state_dict, assign=True)
@@ -46,7 +47,7 @@ meta_m.load_state_dict(state_dict, assign=True)
 #############################################################################
 # Compare the snippet below to the one above:
 
-state_dict = torch.load('checkpoint.pth')
+state_dict = torch.load('checkpoint.pth', weights_only=True)
 m = SomeModule(1000)
 m.load_state_dict(state_dict)
 
@@ -70,7 +71,7 @@ m.load_state_dict(state_dict)
 # * Waiting for the entire checkpoint to be loaded into RAM before performing, for example, some per-tensor processing.
 
 start_time = time.time()
-state_dict = torch.load('checkpoint.pth')
+state_dict = torch.load('checkpoint.pth', weights_only=True)
 end_time = time.time()
 print(f"loading time without mmap={end_time - start_time}")
 
@@ -83,7 +84,7 @@ print(f"loading time without mmap={end_time - start_time}")
 # storages will be memory-mapped.
 
 start_time = time.time()
-state_dict = torch.load('checkpoint.pth', mmap=True)
+state_dict = torch.load('checkpoint.pth', mmap=True, weights_only=True)
 end_time = time.time()
 print(f"loading time with mmap={end_time - start_time}")
 
@@ -152,8 +153,13 @@ m.load_state_dict(state_dict)
 # ``nn.Module.parameters()``, the optimizer must be initialized after the module
 # is loaded from state dict if ``assign=True`` is passed.
 
+# As of PyTorch 2.3.0, one can use ``torch.__future__.set_swap_module_params_on_conversion`` to
+# avoid this caveat. This `recipe <https://pytorch.org/tutorials/recipes/recipes/swap_tensors.html>`_
+# provides more details.
+
 new_m.load_state_dict(state_dict, assign=True)
-# This MUST be done AFTER the load_state_dict with assign.
+# Before 2.3.0, this MUST be done AFTER the load_state_dict with assign.
+# In versions >= 2.3.0, one can consider setting ``torch.__future__.set_swap_module_params_on_conversion``
 opt = torch.optim.SGD(new_m.parameters(), lr=1e-3)
 
 ###############################################################################

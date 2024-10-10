@@ -31,14 +31,6 @@ Recipes are bite-sized, actionable examples of how to use specific PyTorch featu
 .. Basics
 
 .. customcarditem::
-   :header: Loading data in PyTorch
-   :card_description: Learn how to use PyTorch packages to prepare and load common datasets for your model.
-   :image: ../_static/img/thumbnails/cropped/loading-data.PNG
-   :link: ../recipes/recipes/loading_data_recipe.html
-   :tags: Basics
-
-
-.. customcarditem::
    :header: Defining a Neural Network
    :card_description: Learn how to use PyTorch's torch.nn package to create and define a neural network for the MNIST dataset.
    :image: ../_static/img/thumbnails/cropped/defining-a-network.PNG
@@ -151,6 +143,19 @@ Recipes are bite-sized, actionable examples of how to use specific PyTorch featu
    :link: ../recipes/torch_logs.html
    :tags: Basics
 
+.. customcarditem::
+   :header: Extension points in nn.Module for loading state_dict and tensor subclasses
+   :card_description: New extension points in nn.Module.
+   :image: ../_static/img/thumbnails/cropped/generic-pytorch-logo.png
+   :link: ../recipes/recipes/swap_tensors.html
+   :tags: Basics
+
+.. customcarditem::
+   :header: torch.export AOTInductor Tutorial for Python runtime
+   :card_description: Learn an end-to-end example of how to use AOTInductor for python runtime.
+   :image: ../_static/img/thumbnails/cropped/generic-pytorch-logo.png
+   :link: ../recipes/torch_export_aoti_python.html
+   :tags: Basics
 
 .. Interpretability
 
@@ -276,6 +281,13 @@ Recipes are bite-sized, actionable examples of how to use specific PyTorch featu
    :tags: Model-Optimization
 
 .. customcarditem::
+   :header: Optimizing CPU Performance on Intel® Xeon® with run_cpu Script
+   :card_description: How to use run_cpu script for optimal runtime configurations on Intel® Xeon CPUs.
+   :image: ../_static/img/thumbnails/cropped/profiler.png
+   :link: ../recipes/xeon_run_cpu.html
+   :tags: Model-Optimization
+
+.. customcarditem::
    :header: PyTorch Inference Performance Tuning on AWS Graviton Processors
    :card_description: Tips for achieving the best inference performance on AWS Graviton CPUs
    :image: ../_static/img/thumbnails/cropped/generic-pytorch-logo.png
@@ -298,6 +310,33 @@ Recipes are bite-sized, actionable examples of how to use specific PyTorch featu
    :card_description: Speed up the optimizer using torch.compile
    :image: ../_static/img/thumbnails/cropped/generic-pytorch-logo.png
    :link: ../recipes/compiling_optimizer.html
+   :tags: Model-Optimization
+
+.. (beta) Running the compiled optimizer with an LR Scheduler
+
+.. customcarditem::
+   :header: (beta) Running the compiled optimizer with an LR Scheduler
+   :card_description: Speed up training with LRScheduler and torch.compiled optimizer
+   :image: ../_static/img/thumbnails/cropped/generic-pytorch-logo.png
+   :link: ../recipes/compiling_optimizer_lr_scheduler.html
+   :tags: Model-Optimization
+
+.. Using User-Defined Triton Kernels with ``torch.compile``
+
+.. customcarditem::
+   :header: Using User-Defined Triton Kernels with ``torch.compile``
+   :card_description: Learn how to use user-defined kernels with ``torch.compile``
+   :image: ../_static/img/thumbnails/cropped/generic-pytorch-logo.png
+   :link: ../recipes/torch_compile_user_defined_triton_kernel_tutorial.html
+   :tags: Model-Optimization
+
+.. Compile Time Caching in ``torch.compile``
+
+.. customcarditem::
+   :header: Compile Time Caching in ``torch.compile``
+   :card_description: Learn how to configure compile time caching in ``torch.compile``
+   :image: ../_static/img/thumbnails/cropped/generic-pytorch-logo.png
+   :link: ../recipes/torch_compile_caching_tutorial.html
    :tags: Model-Optimization
 
 .. Intel(R) Extension for PyTorch*
@@ -355,6 +394,20 @@ Recipes are bite-sized, actionable examples of how to use specific PyTorch featu
    :link: ../recipes/distributed_checkpoint_recipe.html
    :tags: Distributed-Training
 
+.. customcarditem::
+   :header: Asynchronous Checkpointing (DCP)
+   :card_description: Learn how to checkpoint distributed models with Distributed Checkpoint package.
+   :image: ../_static/img/thumbnails/cropped/Getting-Started-with-DCP.png
+   :link: ../recipes/distributed_async_checkpoint_recipe.html
+   :tags: Distributed-Training
+
+.. customcarditem::
+   :header: Getting Started with CommDebugMode
+   :card_description: Learn how to use CommDebugMode for DTensors
+   :image: ../_static/img/thumbnails/cropped/generic-pytorch-logo.png
+   :link: ../recipes/distributed_comm_debug_mode.html
+   :tags: Distributed-Training
+
 .. TorchServe
 
 .. customcarditem::
@@ -382,7 +435,6 @@ Recipes are bite-sized, actionable examples of how to use specific PyTorch featu
 .. toctree::
    :hidden:
 
-   /recipes/recipes/loading_data_recipe
    /recipes/recipes/defining_a_neural_network
    /recipes/torch_logs
    /recipes/recipes/what_is_state_dict
@@ -399,6 +451,7 @@ Recipes are bite-sized, actionable examples of how to use specific PyTorch featu
    /recipes/recipes/dynamic_quantization
    /recipes/recipes/amp_recipe
    /recipes/recipes/tuning_guide
+   /recipes/recipes/xeon_run_cpu
    /recipes/recipes/intel_extension_for_pytorch
    /recipes/compiling_optimizer
    /recipes/torch_compile_backend_ipex
@@ -409,3 +462,4 @@ Recipes are bite-sized, actionable examples of how to use specific PyTorch featu
    /recipes/cuda_rpc
    /recipes/distributed_optim_torchscript
    /recipes/mobile_interpreter
+   /recipes/distributed_comm_debug_mode
